@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Document</title>
+<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+<style>
+ .calendar-title {
+    /* padding: 18px 0; */
+    color: #88706c;
+    font-size: 1.5rem;
+    text-align: center;
+}
+.calendar-title .btn-monthMove {
+    font-size: 1.8rem;
+}
+.calendar-title .btn-monthMove.prev {
+    margin-right: 24px;
+}
+.calendar-title .btn-monthMove.next {
+    margin-left: 24px;
+}
+
+</style>
+</head>
+<body>
+    <div class="calendar-title">
+      <span class="btn-monthMove prev fa fa-angle-left" id="left"></span>
+      <div id="now">2018/11</div>
+      <span class="btn-monthMove next fa fa-angle-right" id="right"></span>
+    </div>
+<script>
+    const currnt =new Date();
+    let year = currnt.getFullYear(); //年を取得する関数
+    let month = currnt.getMonth()+1; //月の取得する関数
+    console.log(year+ "/" + month); //確認用
+
+    $("#now").html(year+ "/" + month);
+
+    $("#right").on("click",function(){
+
+         if (month === 12) {
+             year = year+1;
+             month = 1;
+            $("#now").html(year +"/" + month);
+        } else {
+         month = month+1;
+        $("#now").html(year+ "/" + month);
+        }
+    });
+
+    $("#left").on("click",function(){
+        if (month === 1) {
+             year = year-1;
+             month = 12;
+            $("#now").html(year +"/" + month);
+        } else {
+         month = month-1;
+        $("#now").html(year+ "/" + month);
+        }
+    
+    });
+
+   
+
+</script>
+</body>
+</html>

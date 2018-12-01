@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    div>div{
+    display: flex;
+    justify-content: center;
+    }
+    div>div>div{
+    width:25px;
+    padding:8px;
+    border:solid 1px #ccc;
+    text-align: center;
+    }
+    div>div:nth-of-type(5n){
+    
+    }
+    
+    </style>
+    <script src="http://code.jquery.com/jquery-3.3.1.js"></script>
+</head>
+<body>
+    <div id="bingoseat">
+        <!-- <div>
+            <div>1</div>
+            <div>2</div>
+            <div>3</div>
+            <div>4</div>
+            <div>5</div>
+        </div> -->
+    </div>
+
+ <script>
+    let l = "";
+    const num = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40];
+   
+    for(j = 0;j<5;j++){
+        
+        l += "<div>";
+        console.log(l);
+        // let num = "";
+       
+        for(i = 0;i<5;i++){ 
+            if (j==2 && i ==2){      
+            l += "<div></div>";
+
+            }else{
+                let nb = [num.splice(Math.ceil(Math.random()*num.length),1)];
+                console.log(nb); 
+    
+                l += "<div>"+ nb + "</div>";
+                console.log(nb);
+
+            }
+        } 
+        
+        l += "</div>";
+        console.log(l);
+
+    };
+       
+     $("#bingoseat").html(l);
+     console.log(l);
+
+
+    
+</script>
+</body>
+</html>

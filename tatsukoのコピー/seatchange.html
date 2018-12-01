@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Document</title>
+<link rel="stylesheet" href="reset.css">
+<link rel="stylesheet" href="styles.css">
+<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+
+<body>
+    <audio src="drum.mp3" id="sound"></audio>
+    <audio src="cymbal.mp3" id="sound"></audio>
+
+    <div class="num"></div>
+    <div class="btn"><input type="button" value="スタート"></div>
+
+    <div id="stage">
+
+<script>
+
+    const an=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50];
+    mae =[];
+       
+    //チェックボックスを作る処理
+    for(var i = 0;i<an.length;i++){     
+        
+        $(".num").append("<input type = 'checkbox' class = 'check' value='" + an[i] + "'>" + an[i])
+    };
+
+    //音を鳴らす処理
+    function playSound () {
+        $("#sound").get(0).play(); //getの中は必ず０、公式的なもの
+    }
+        
+
+    //クリックイベント
+        $(".btn").on("click",function(){
+            // playSound();
+
+            //1. 優先者の情報を取得
+            let mae = [];//チェックした目の不自由な人のIDデータ
+            $("input[type='checkbox']:checked").each(function(){
+                let val = $(this).val();
+                mae.push(+val);
+            })
+            console.log(mae);
+
+            //2. 全体の配列から優先者のIDデータを消す
+            // let index = an.indexOf(3);
+            // an.splice(index,1);
+            
+            
+            let uninclude = [];
+             for(k = 0;k<an.length;k++){                
+                if(mae.indexOf(an[k])<0){
+                    uninclude.push(an[k])
+                }
+                
+             }
+
+             console.log(uninclude);          
+
+            //3.優先者の席を決める
+
+            //4.全体（残りの人）の席を決める
+
+         
+        
+            // timer = setInterval(function(){
+                // const an = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50];
+
+                let l = "";
+
+                //座席位置に出席番号をランダムに振り分ける処理
+                for(i = 0;i<9;i++){
+        
+                    if(i >5){   //>と書くときには、その数字は入らない
+                        l += "<div class='wrap'>";
+                
+                        
+                        for(j = 0;j<5;j++){
+                            
+                            let seatnum = an.splice(Math.floor(Math.random()*an.length),1);
+                            // console.log(an);
+                            l += "<div>"+ seatnum + "</div>"
+
+                        };
+
+                        l += "</div>";
+                    
+                    }else{
+                        l += "<div class='wrap'>";
+                        
+                        for(j = 0;j<6;j++){
+                        
+                        let seatnum = an.splice(Math.floor(Math.random()*an.length),1);
+                    
+                        l += "<div>"+ seatnum + "</div>"
+
+                        };
+
+                        l += "</div>";
+
+                    }
+                }
+                $("#stage").html(l);
+
+            // },50);
+        });
+        
+
+        //音が止まったらシャッフルを止める処理
+        // $("#sound").on("ended",function(){
+        //     clearInterval(timer);
+        // });
+
+        
+
+
+    
+
+
+</script>
+
+</body>
+
